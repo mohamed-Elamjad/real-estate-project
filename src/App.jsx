@@ -4,9 +4,11 @@ import About from "./pages/About";
 import Profile from "./pages/Profile";
 import SingIn from "./pages/SingIn";
 import SingUp from "./pages/SingUp";
+import Header from "./components/Header";
 const App = () => {
   return (
     <BrowserRouter>
+    <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sing-in" element={<SingIn />} />
