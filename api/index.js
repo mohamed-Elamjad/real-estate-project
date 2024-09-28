@@ -1,16 +1,18 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import UserRoute from "./routes/user.route.js";
 
 // Initialize express app and configure dotenv
 const app = express();
 dotenv.config();
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Connected to MongoDB");
   })
@@ -18,6 +20,11 @@ mongoose.connect(process.env.MONGO_URL, {
     console.error("Error connecting to MongoDB:", err.message);
     process.exit(1); // Exit the app if unable to connect
   });
+
+
+//routes
+app.use("/api", UserRoute);
+
 
 // Start the server on port 3000
 const PORT = process.env.PORT || 3000;
