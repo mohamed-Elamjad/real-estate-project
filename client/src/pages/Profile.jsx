@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { app } from "../firebase";
 import {
   getDownloadURL,
@@ -9,19 +9,28 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import toast from "react-hot-toast";
+import {
+  updateUserFailure,
+  updateUserStart,
+  updateUserSuccess,
+} from "../redux/user/userSlice";
 
 const Profile = () => {
   const fileRef = useRef(null);
   const [formData, setFormData] = useState({});
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0); // State to track file upload percentage
-  const { currentUser } = useSelector((state) => state.user);
-
+  const {loading, currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (file) {
       handleFileUpload(file);
     }
   }, [file]);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
 
   const handleFileUpload = (file) => {
     const storage = getStorage(app);
@@ -47,10 +56,38 @@ const Profile = () => {
     );
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      dispatch(updateUserStart());
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        dispatch(updateUserFailure(data.message));
+        toast.error(data.message || "Update failed. Please try again.");
+
+        return;
+      }
+
+      dispatch(updateUserSuccess(data));
+      toast.success("Update user successful!");
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+      toast.error(error.message || "An error occurred. Please try again.");
+    }
+  };
+
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
-      <form className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="file"
           ref={fileRef}
@@ -87,25 +124,36 @@ const Profile = () => {
         <input
           type="text"
           placeholder="username"
+          defaultValue={currentUser.username}
+          onChange={handleChange}
           id="username"
+          required
           className="border p-3 rounded-lg"
         />
         <input
           type="email"
           placeholder="email"
           id="email"
+          required
+          defaultValue={currentUser.email}
+          onChange={handleChange}
           className="border p-3 rounded-lg"
         />
         <input
           type="password"
           placeholder="password"
           id="password"
+          defaultValue={currentUser.password}
+          onChange={handleChange}
           className="border p-3 rounded-lg"
         />
 
         {/* Update Button */}
-        <button className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">
-          Update
+        <button
+          disabled={loading}
+          className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
+        >
+          {loading ? 'Loading...' : 'Update'}
         </button>
 
         {/* Link to Create Listing */}
