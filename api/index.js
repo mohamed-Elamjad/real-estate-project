@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
+import cookieParser from "cookie-parser";
 
 // Initialize express app and configure dotenv
 const app = express();
 app.use(express.json());
 dotenv.config();
+app.use(cookieParser());
 
 // MongoDB connection
 mongoose
@@ -24,7 +26,7 @@ mongoose
   });
 
 //routes
-app.use("/api", userRoute);
+app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 
 // Start the server on port 3000
