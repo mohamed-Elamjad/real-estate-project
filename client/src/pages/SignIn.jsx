@@ -1,13 +1,19 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { signInFailure, signInStart, signInSuccess } from "../redux/user/userSlice";
+
 const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loading} = useSelector((state) => state.user);
 
   const handleChange = (e) => {
     setFormData({
@@ -18,6 +24,7 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     // Check if all fields are filled before sending request
     if (!formData.email || !formData.password) {
       toast.error("Please fill out all fields.");
@@ -25,7 +32,8 @@ const SignIn = () => {
     }
 
     try {
-      setLoading(true);
+      dispatch(signInStart());
+
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
@@ -37,16 +45,16 @@ const SignIn = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        setLoading(false);
-        toast.error(data.message || "Sign-up failed. Please try again.");
+        dispatch(signInFailure(data.message));
+        toast.error(data.message || "Sign-in failed. Please try again.");
         return;
       }
 
-      setLoading(false);
+      dispatch(signInSuccess(data));
       toast.success("Sign-in successful!");
       navigate("/");
     } catch (error) {
-      setLoading(false);
+      dispatch(signInFailure(error.message));
       toast.error(error.message || "An error occurred. Please try again.");
     }
   };
@@ -56,14 +64,14 @@ const SignIn = () => {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="email"
-          placeholder="email"
+          placeholder="Email"
           className="border p-3 rounded-lg"
           id="email"
           onChange={handleChange}
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           className="border p-3 rounded-lg"
           id="password"
           onChange={handleChange}
@@ -77,8 +85,8 @@ const SignIn = () => {
         </button>
       </form>
       <div className="flex gap-2 mt-5">
-        <p>Dont have an account?</p>
-        <Link to={"/sign-up"}>
+        <p>Don't have an account?</p>
+        <Link to="/sign-up">
           <span className="text-blue-700">Sign up</span>
         </Link>
       </div>
