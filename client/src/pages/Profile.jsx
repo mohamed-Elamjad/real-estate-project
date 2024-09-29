@@ -13,6 +13,7 @@ import {
   deleteUserFailure,
   deleteUserStart,
   deleteUserSuccess,
+  signOutUserStart,
   updateUserFailure,
   updateUserStart,
   updateUserSuccess,
@@ -101,6 +102,25 @@ const Profile = () => {
       }
       dispatch(deleteUserSuccess(data));
       toast.success("Delete user successful!");
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+      toast.error(error.message || "An error occurred. Please try again.");
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        toast.error(data.message || "Sign out failed. Please try again.");
+
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+      toast.success("Sign out successful!");
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
       toast.error(error.message || "An error occurred. Please try again.");
@@ -196,7 +216,7 @@ const Profile = () => {
         >
           Delete account
         </span>
-        <span className="text-red-700 cursor-pointer">Sign out</span>
+        <span  onClick={handleSignOut} className="text-red-700 cursor-pointer">Sign out</span>
       </div>
 
       {/* Show Listings Button */}
