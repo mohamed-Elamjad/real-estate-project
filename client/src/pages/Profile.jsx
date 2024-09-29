@@ -10,6 +10,9 @@ import {
 } from "firebase/storage";
 import toast from "react-hot-toast";
 import {
+  deleteUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
   updateUserFailure,
   updateUserStart,
   updateUserSuccess,
@@ -20,7 +23,7 @@ const Profile = () => {
   const [formData, setFormData] = useState({});
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0); // State to track file upload percentage
-  const {loading, currentUser } = useSelector((state) => state.user);
+  const { loading, currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
     if (file) {
@@ -72,7 +75,6 @@ const Profile = () => {
       if (!res.ok) {
         dispatch(updateUserFailure(data.message));
         toast.error(data.message || "Update failed. Please try again.");
-
         return;
       }
 
@@ -80,6 +82,27 @@ const Profile = () => {
       toast.success("Update user successful!");
     } catch (error) {
       dispatch(updateUserFailure(error.message));
+      toast.error(error.message || "An error occurred. Please try again.");
+    }
+  };
+
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        dispatch(deleteUserFailure(data.message));
+        toast.error(data.message || "Delete failed. Please try again.");
+
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+      toast.success("Delete user successful!");
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
       toast.error(error.message || "An error occurred. Please try again.");
     }
   };
@@ -151,9 +174,9 @@ const Profile = () => {
         {/* Update Button */}
         <button
           disabled={loading}
-          className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
+          className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? 'Loading...' : 'Update'}
+          {loading ? "Loading..." : "Update"}
         </button>
 
         {/* Link to Create Listing */}
@@ -167,7 +190,12 @@ const Profile = () => {
 
       {/* Delete and Sign Out Options */}
       <div className="flex justify-between mt-5">
-        <span className="text-red-700 cursor-pointer">Delete account</span>
+        <span
+          onClick={handleDeleteUser}
+          className="text-red-700 cursor-pointer"
+        >
+          Delete account
+        </span>
         <span className="text-red-700 cursor-pointer">Sign out</span>
       </div>
 
