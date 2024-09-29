@@ -25,7 +25,7 @@ mongoose
 
 //routes
 app.use("/api", userRoute);
-app.use("/api", authRoute);
+app.use("/api/auth", authRoute);
 
 // Start the server on port 3000
 const PORT = process.env.PORT || 3000;
