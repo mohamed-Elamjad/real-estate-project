@@ -40,19 +40,26 @@ const listingSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      required: true,
+      required: true, // rent or sell
     },
     offer: {
       type: Boolean,
-      required: true,
+      required: true, // if offer discountPrice
     },
     imageUrls: {
-      type: Array,
+      type: [String], // Changed to an array of strings
       required: true,
     },
     userRef: {
       type: String,
       required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
     },
   },
   { timestamps: true }
