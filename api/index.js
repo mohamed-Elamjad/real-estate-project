@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
+import listingRoute from "./routes/listing.route.js";
+
 import cookieParser from "cookie-parser";
 
 // Initialize express app and configure dotenv
@@ -28,6 +30,7 @@ mongoose
 //routes
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/listing", listingRoute);
 
 // Start the server on port 3000
 const PORT = process.env.PORT || 3000;
