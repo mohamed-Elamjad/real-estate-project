@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { app } from "../firebase";
+import { RiImageEditFill } from "react-icons/ri";
+
 import {
   getDownloadURL,
   getStorage,
@@ -80,7 +82,7 @@ const Profile = () => {
       }
 
       dispatch(updateUserSuccess(data));
-      toast.success("Update user successful!");
+      toast.success("Update  successful!");
     } catch (error) {
       dispatch(updateUserFailure(error.message));
       toast.error(error.message || "An error occurred. Please try again.");
@@ -111,7 +113,7 @@ const Profile = () => {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch('/api/auth/signout');
+      const res = await fetch("/api/auth/signout");
       const data = await res.json();
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
@@ -156,12 +158,21 @@ const Profile = () => {
           </div>
         )}
 
-        {/* Show success message if filePerc is 100 */}
-        {filePerc === 100 && (
-          <div className="text-center text-green-600 font-semibold">
-            Image successfully uploaded!
-          </div>
-        )}
+        {/* Submit Image Button */}
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className={`bg-blue-500 flex justify-center items-center gap-2 text-white p-3 rounded-lg mt-2 ${
+            filePerc !== 100
+              ? "opacity-50 cursor-not-allowed"
+              : "hover:opacity-95"
+          }`}
+          disabled={filePerc !== 100} // Disable the button if filePerc is not 100
+        >
+          <RiImageEditFill className="text-xl"/> Image
+        </button>
+
+
 
         {/* Username, Email, and Password Inputs */}
         <input
@@ -216,7 +227,9 @@ const Profile = () => {
         >
           Delete account
         </span>
-        <span  onClick={handleSignOut} className="text-red-700 cursor-pointer">Sign out</span>
+        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
+          Sign out
+        </span>
       </div>
 
       {/* Show Listings Button */}
