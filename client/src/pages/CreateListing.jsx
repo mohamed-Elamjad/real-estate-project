@@ -153,7 +153,7 @@ export default function CreateListing() {
         toast.error(data.message);
       } else {
         toast.success("Listing created successfully");
-        // navigate(`/listing/${data._id}`);
+        navigate(`/profile/listings`);
       }
     } catch (error) {
       toast.error(error.message);
@@ -166,7 +166,8 @@ export default function CreateListing() {
       <h1 className="text-3xl font-semibold text-center my-7">
         Create a Listing
       </h1>
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+      <form onSubmit={handleSubmit} 
+      className="flex flex-col sm:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <input
             type="text"
@@ -217,7 +218,8 @@ export default function CreateListing() {
           />
           <div className="flex-col">
             <div className="flex items-center gap-6 mt-2">
-              <span className="text-black">Choose Listing Type {" :"}</span>
+              <span className="text-black">
+                Choose Listing Type {" :"}</span>
               <div className="flex gap-2">
                 <input
                   type="checkbox"
@@ -278,6 +280,7 @@ export default function CreateListing() {
                 <span>Offer</span>
               </div>
             </div>
+
           </div>
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
@@ -346,6 +349,7 @@ export default function CreateListing() {
               </div>
             )}
           </div>
+          
         </div>
         <div className="flex flex-col flex-1 gap-4">
           <p className="font-semibold">
