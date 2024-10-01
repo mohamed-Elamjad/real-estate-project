@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { FiTrash2 } from "react-icons/fi"; 
+import { FaEdit } from "react-icons/fa";
 
 const Listings = () => {
   const [userListings, setUserListings] = useState([]);
@@ -72,15 +74,19 @@ const handleListingDelete = async (listingId) => {
               <p>{listing.name}</p>
             </Link>
 
-            <div className="flex flex-col items-center">
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => handleListingDelete(listing._id)}
-                className="text-red-700 hover:underline uppercase mb-2"
+                className="text-red-700 hover:text-red-900 transition-colors"
+                title="Delete"
               >
-                Delete
+                <FiTrash2 size={20} />
               </button>
-              <Link to={`/profile/update-listing/${listing._id}`}>
-                <button className="text-green-700 hover:underline uppercase">Edit</button>
+
+              <Link to={`/profile/update-listing/${listing._id}`} title="Edit">
+                <button className="text-green-700 mt-2 hover:text-green-900 transition-colors">
+                  <FaEdit size={20}  />
+                </button>
               </Link>
             </div>
           </div>
