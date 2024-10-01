@@ -33,7 +33,6 @@ const App = () => {
             <Route path="update-listing/:id" element={<UpdateListing />} />
           </Route>
         </Route>
-
       </Routes>
     </BrowserRouter>
   );
