@@ -7,8 +7,7 @@ export default function ListingItem({ listing }) {
       <Link to={`/listing/${listing._id}`}>
         <img
           src={
-            listing.imageUrls[0] ||
-            'https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/Sales_Blog/real-estate-business-compressor.jpg?width=595&height=400&name=real-estate-business-compressor.jpg'
+            listing.imageUrls[0] ||'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fwhite&psig=AOvVaw2u-aWSLuZUUxjU_3_YvY0s&ust=1727900052860000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIivj77_7YgDFQAAAAAdAAAAABAE'
           }
           alt='listing cover'
           className='h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300'

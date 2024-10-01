@@ -13,6 +13,7 @@ import Listings from "./pages/Listings";
 import UpdateListing from "./pages/UpdateListing";
 import ListingDetails from "./pages/ListingDetails";
 import Search from "./pages/Search";
+import Footer from "./components/Footer";
 const App = () => {
   return (
     <BrowserRouter>
@@ -36,6 +37,7 @@ const App = () => {
           </Route>
         </Route>
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 };
