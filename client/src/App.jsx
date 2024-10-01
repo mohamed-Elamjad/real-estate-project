@@ -12,6 +12,7 @@ import ProfileLayout from "./pages/ProfileLayout";
 import Listings from "./pages/Listings";
 import UpdateListing from "./pages/UpdateListing";
 import ListingDetails from "./pages/ListingDetails";
+import Search from "./pages/Search";
 const App = () => {
   return (
     <BrowserRouter>
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/about" element={<About />} />
         <Route path="/listing/:id" element={<ListingDetails />} />
+        <Route path='/search' element={<Search />} />
 
         {/* private route */}
         <Route element={<PrivateRoute />}>
