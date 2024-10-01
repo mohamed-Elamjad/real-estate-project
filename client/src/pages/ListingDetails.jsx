@@ -8,18 +8,21 @@ import {
   FaMapMarkerAlt,
   FaParking,
   FaShare,
+  FaUserCircle,
 } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
+import Contact from "../components/Contact";
 
 const ListingDetails = () => {
   SwiperCore.use([Navigation]);
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [contact, setContact] = useState(false);
   const { id } = useParams();
   const { currentUser } = useSelector((state) => state.user);
 
@@ -35,7 +38,7 @@ const ListingDetails = () => {
           return;
         }
         setListing(data);
-        setLoading(false); // Corrected here to set loading to false
+        setLoading(false);
       } catch (error) {
         setLoading(false);
         toast.error("An error occurred!");
@@ -63,6 +66,8 @@ const ListingDetails = () => {
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Share Button */}
           <div className="fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer">
             <FaShare
               className="text-slate-500"
@@ -80,6 +85,8 @@ const ListingDetails = () => {
               Link copied!
             </p>
           )}
+
+          {/* Listing Details */}
           <div className="flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4">
             <p className="text-2xl font-semibold">
               {listing.name} - ${" "}
@@ -88,10 +95,14 @@ const ListingDetails = () => {
                 : listing.regularPrice.toLocaleString("en-US")}
               {listing.type === "rent" && " / month"}
             </p>
+
+            {/* Location */}
             <p className="flex items-center mt-6 gap-2 text-slate-600  text-sm">
               <FaMapMarkerAlt className="text-green-700" />
               {listing.address}
             </p>
+
+            {/* Listing Type and Discount */}
             <div className="flex gap-4">
               <p className="bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
                 {listing.type === "rent" ? "For Rent" : "For Sale"}
@@ -102,41 +113,76 @@ const ListingDetails = () => {
                 </p>
               )}
             </div>
+
+            {/* Description */}
             <p className="text-slate-800">
               <span className="font-semibold text-black">Description - </span>
               {listing.description}
             </p>
+
+            {/* Listing Info */}
             <ul className="text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6">
-              <li className="flex items-center gap-1 whitespace-nowrap ">
+              <li className="flex items-center gap-1 whitespace-nowrap">
                 <FaBed className="text-lg" />
                 {listing.bedrooms > 1
                   ? `${listing.bedrooms} beds `
                   : `${listing.bedrooms} bed `}
               </li>
-              <li className="flex items-center gap-1 whitespace-nowrap ">
+              <li className="flex items-center gap-1 whitespace-nowrap">
                 <FaBath className="text-lg" />
                 {listing.bathrooms > 1
                   ? `${listing.bathrooms} baths `
                   : `${listing.bathrooms} bath `}
               </li>
-              <li className="flex items-center gap-1 whitespace-nowrap ">
+              <li className="flex items-center gap-1 whitespace-nowrap">
                 <FaParking className="text-lg" />
                 {listing.parking ? "Parking spot" : "No Parking"}
               </li>
-              <li className="flex items-center gap-1 whitespace-nowrap ">
+              <li className="flex items-center gap-1 whitespace-nowrap">
                 <FaChair className="text-lg" />
                 {listing.furnished ? "Furnished" : "Unfurnished"}
               </li>
             </ul>
 
-            {currentUser && listing.userRef !== currentUser._id && !contact && (
+            {/* Contact Info */}
+            <div className="mt-4 bg-slate-100 p-4 rounded-lg">
+              <p className="text-lg font-semibold">Contact Information</p>
+              <p className="text-sm">Email: {listing.email}</p>
+              <p className="text-sm">Phone: {listing.phoneNumber}</p>
+            </div>
+
+
+            {/* Current User Info */}
+            {currentUser && (
+              <div className="mt-6 flex items-center gap-3">
+              {currentUser.avatar ? (
+                <img
+                  src={currentUser.avatar}
+                  alt="User Avatar"
+                  className="w-10 h-10 rounded-full"
+                />
+              ) : (
+                <FaUserCircle className="w-10 h-10 text-slate-800" />
+              )}
+              <p className="text-slate-800">{currentUser.username}</p>
+            </div>
+            
+            )}
+
+
+
+            
+            {/* Contact Button */}
+            {currentUser  && !contact && (
               <button
                 onClick={() => setContact(true)}
-                className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
+                className="bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 mt-4"
               >
                 Contact landlord
               </button>
             )}
+
+            {/* Contact Form */}
             {contact && <Contact listing={listing} />}
           </div>
         </div>
