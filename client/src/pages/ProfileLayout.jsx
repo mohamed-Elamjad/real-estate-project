@@ -14,8 +14,8 @@ const ProfileLayout = () => {
               <button
                 className={`cursor-pointer outline-none px-10 rounded-lg border p-2 text-sm ${
                   location.pathname === "/profile"
-                    ? "bg-slate-700 hover:bg-slate-600 text-white"
-                    : "bg-white  border-slate-500"
+                    ? "bg-blue-400 hover:bg-blue-500 text-white"
+                    : "bg-white  border-blue-400"
                 }`}
                 onClick={() => navigate("/profile")}
               >
@@ -24,8 +24,8 @@ const ProfileLayout = () => {
               <button
                 className={`cursor-pointer outline-none px-10 rounded-lg border p-2 text-sm ${
                   location.pathname === "/profile/listings"
-                    ? "bg-slate-700 hover:bg-slate-600 text-white"
-                    : "bg-white  border-slate-500"
+                    ? "bg-blue-400 hover:bg-blue-500 text-white"
+                    : "bg-white  border-blue-400"
                 }`}
                 onClick={() => navigate("/profile/listings")}
               >
@@ -39,9 +39,9 @@ const ProfileLayout = () => {
               <NavLink to="/profile">
                 {" "}
                 <li
-                  className={`cursor-pointer px-4 py-2 font-semibold transition hover:text-slate-400 ${
+                  className={`cursor-pointer px-4 py-2 font-semibold transition hover:text-blue-400 ${
                     location.pathname === "/profile"
-                      ? "bg-slate-700 rounded-lg hover:text-slate-50 hover:bg-slate-600 text-white"
+                      ? "bg-blue-400 rounded-lg hover:text-slate-50 hover:bg-blue-500 text-white"
                       : ""
                   }`}
                 >
@@ -50,10 +50,10 @@ const ProfileLayout = () => {
               </NavLink>
               <NavLink to="/profile/listings">
                 <li
-                  className={`cursor-pointer px-4 py-2 font-semibold transition hover:text-slate-400 ${
+                  className={`cursor-pointer px-4 py-2 font-semibold transition hover:text-blue-400 ${
                     location.pathname === "/profile/listings"
-                      ? "bg-slate-700 rounded-lg hover:text-slate-50 hover:bg-slate-600 text-white"
-                      : ""
+                    ? "bg-blue-400 rounded-lg hover:text-slate-50 hover:bg-blue-500 text-white"
+                    : ""
                   }`}
                 >
                   listings

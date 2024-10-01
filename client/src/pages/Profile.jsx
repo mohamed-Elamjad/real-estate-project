@@ -162,7 +162,7 @@ const Profile = () => {
         <button
           type="button"
           onClick={handleSubmit}
-          className={`bg-blue-500 flex justify-center items-center gap-2 text-white p-3 rounded-lg mt-2 ${
+          className={`bg-blue-400 flex justify-center items-center gap-2 text-white p-3 rounded-lg mt-2 ${
             filePerc !== 100
               ? "opacity-50 cursor-not-allowed"
               : "hover:opacity-95"
@@ -180,7 +180,7 @@ const Profile = () => {
           onChange={handleChange}
           id="username"
           required
-          className="border p-3 rounded-lg"
+          className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
         />
         <input
           type="email"
@@ -189,7 +189,7 @@ const Profile = () => {
           required
           defaultValue={currentUser.email}
           onChange={handleChange}
-          className="border p-3 rounded-lg"
+          className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
         />
         <input
           type="password"
@@ -197,35 +197,27 @@ const Profile = () => {
           id="password"
           defaultValue={currentUser.password}
           onChange={handleChange}
-          className="border p-3 rounded-lg"
+          className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
         />
 
         {/* Update Button */}
         <button
           disabled={loading}
-          className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
+          className="bg-blue-400 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Loading..." : "Update"}
         </button>
-
-        {/* Link to Create Listing */}
-        <Link
-          className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95"
-          to={"/profile/create-listing"}
-        >
-          Create Listing
-        </Link>
       </form>
 
       {/* Delete and Sign Out Options */}
       <div className="flex justify-between mt-5">
         <span
           onClick={handleDeleteUser}
-          className="text-red-700 cursor-pointer"
+          className="text-red-600 hover:underline cursor-pointer"
         >
           Delete account
         </span>
-        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
+        <span onClick={handleSignOut} className="text-red-600 hover:underline cursor-pointer">
           Sign out
         </span>
       </div>

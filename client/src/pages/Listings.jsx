@@ -53,7 +53,7 @@ const Listings = () => {
       <h1 className="text-center mt-7 text-2xl font-semibold">Your Listings</h1>
       <div className="my-4 flex justify-center">
         <Link
-          className="bg-green-700 text-white w-[300px] p-3 rounded-lg uppercase text-center hover:opacity-95"
+          className="bg-blue-400 text-white w-[300px] p-3 rounded-lg uppercase text-center hover:opacity-95"
           to={"/profile/create-listing"}
         >
           Create Listing
@@ -83,14 +83,14 @@ const Listings = () => {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => handleListingDelete(listing._id)}
-                className="text-red-700 hover:text-red-900 transition-colors"
+                className="text-red-500 hover:text-red-600 transition-colors"
                 title="Delete"
               >
                 <FiTrash2 size={20} />
               </button>
 
               <Link to={`/profile/update-listing/${listing._id}`} title="Edit">
-                <button className="text-green-700 mt-2 hover:text-green-900 transition-colors">
+                <button className="text-blue-400 mt-2 hover:text-blue-500 transition-colors">
                   <FaEdit size={20} />
                 </button>
               </Link>

@@ -226,13 +226,16 @@ export default function Search() {
               <option value='createdAt_asc'>Oldest</option>
             </select>
           </div>
-          <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>
+          
+          <button className='bg-blue-400 text-white p-3 rounded-lg uppercase hover:opacity-95'>
             Search
           </button>
         </form>
       </div>
       <div className='flex-1'>
+        
         <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>
+        <span className="bg-blue-400 pb-1 text-blue-400 w-2 h-2 mr-1">|</span>
           Listing results:
         </h1>
         <div className='p-7 flex flex-wrap gap-4'>
@@ -254,7 +257,7 @@ export default function Search() {
           {showMore && (
             <button
               onClick={onShowMoreClick}
-              className='text-green-700 hover:underline p-7 text-center w-full'
+              className='text-blue-400 hover:underline p-7 text-center w-full'
             >
               Show more
             </button>

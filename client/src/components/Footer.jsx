@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-8">
+    <footer className="bg-slate-600 mt-10 text-white py-8">
       <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center">
         {/* Brand and Description */}
         <div className="mb-6 md:mb-0 text-center md:text-left">
@@ -23,19 +23,19 @@ export default function Footer() {
         {/* Social Media Icons */}
         <div className="flex gap-4">
           <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
-            <FaFacebook className="text-2xl hover:text-blue-500 transition-colors duration-200" />
+            <FaFacebook className="text-2xl hover:text-blue-400 transition-colors duration-200" />
           </a>
           <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter">
             <FaTwitter className="text-2xl hover:text-blue-400 transition-colors duration-200" />
           </a>
           <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
-            <FaInstagram className="text-2xl hover:text-pink-500 transition-colors duration-200" />
+            <FaInstagram className="text-2xl hover:text-blue-400 transition-colors duration-200" />
           </a>
         </div>
       </div>
 
       {/* Copyright */}
-      <div className="mt-8 text-center text-gray-500 text-sm">
+      <div className="mt-8 text-center text-gray-300 text-sm">
         © {new Date().getFullYear()} Real Estate Listings. All rights reserved.
       </div>
     </footer>

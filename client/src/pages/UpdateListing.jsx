@@ -182,7 +182,7 @@ const UpdateListing = () => {
           <input
             type="text"
             placeholder="Name"
-            className="border p-3 rounded-lg"
+            className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
             id="name"
             maxLength="62"
             minLength="10"
@@ -193,7 +193,7 @@ const UpdateListing = () => {
           <textarea
             type="text"
             placeholder="Description"
-            className="border p-3 rounded-lg"
+            className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
             id="description"
             required
             onChange={handleChange}
@@ -202,7 +202,7 @@ const UpdateListing = () => {
           <input
             type="text"
             placeholder="Address"
-            className="border p-3 rounded-lg"
+            className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
             id="address"
             required
             onChange={handleChange}
@@ -211,7 +211,7 @@ const UpdateListing = () => {
           <input
             type="email"
             placeholder="Email"
-            className="border p-3 rounded-lg"
+            className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
             id="email"
             required
             onChange={handleChange}
@@ -221,7 +221,7 @@ const UpdateListing = () => {
           <input
             type="text"
             placeholder="Phone Number"
-            className="border p-3 rounded-lg"
+            className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
             id="phoneNumber"
             onChange={handleChange}
             value={formData.phoneNumber}
@@ -298,7 +298,7 @@ const UpdateListing = () => {
                 min="1"
                 max="10"
                 required
-                className="p-3 border border-gray-300 rounded-lg"
+                className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
                 onChange={handleChange}
                 value={formData.bedrooms}
               />
@@ -311,7 +311,7 @@ const UpdateListing = () => {
                 min="1"
                 max="10"
                 required
-                className="p-3 border border-gray-300 rounded-lg"
+                className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
                 onChange={handleChange}
                 value={formData.bathrooms}
               />
@@ -324,7 +324,7 @@ const UpdateListing = () => {
                 min="50"
                 max="10000000"
                 required
-                className="p-3 border border-gray-300 rounded-lg"
+                className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
                 onChange={handleChange}
                 value={formData.regularPrice}
               />
@@ -343,7 +343,7 @@ const UpdateListing = () => {
                   min="0"
                   max="10000000"
                   required
-                  className="p-3 border border-gray-300 rounded-lg"
+                  className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
                   onChange={handleChange}
                   value={formData.discountPrice}
                 />
@@ -368,7 +368,7 @@ const UpdateListing = () => {
           <div className="flex gap-4">
             <input
               onChange={(e) => setFiles(e.target.files)}
-              className="p-3 border border-gray-300 rounded w-full"
+              className="border p-3 bg-slate-50 rounded-lg border-1 w-full border-blue-400 outline-none"
               type="file"
               id="images"
               accept="image/*"
@@ -378,7 +378,7 @@ const UpdateListing = () => {
               type="button"
               disabled={uploading}
               onClick={handleImageSubmit}
-              className="p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
+              className="p-3 text-green-700 border border-blue-400 rounded uppercase hover:shadow-lg disabled:opacity-80"
             >
               {uploading ? "Uploading..." : "Upload"}
             </button>
@@ -406,7 +406,7 @@ const UpdateListing = () => {
             ))}
           <button
             disabled={loading || uploading}
-            className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            className="p-3 bg-blue-400 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
           >
             {loading ? "Updating..." : "Update listing"}
           </button>

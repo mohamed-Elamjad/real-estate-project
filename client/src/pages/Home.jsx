@@ -62,7 +62,7 @@ export default function Home() {
         </div>
         <Link
           to={"/search"}
-          className="text-xs sm:text-sm text-blue-800 font-bold hover:underline"
+          className="text-xs sm:text-sm text-blue-400 font-bold hover:underline"
         >
           Let's get started...
         </Link>
@@ -92,11 +92,11 @@ export default function Home() {
         {offerListings && offerListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold text-slate-600">
+              <h2 className="text-2xl font-semibold text-slate-700">
                 Recent offers
               </h2>
               <Link
-                className="text-sm text-blue-800 hover:underline"
+                className="text-sm text-blue-400 hover:underline"
                 to={"/search?offer=true"}
               >
                 Show more offers
@@ -112,11 +112,11 @@ export default function Home() {
         {rentListings && rentListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold text-slate-600">
+              <h2 className="text-2xl font-semibold text-slate-700">
                 Recent places for rent
               </h2>
               <Link
-                className="text-sm text-blue-800 hover:underline"
+                className="text-sm text-blue-400 hover:underline"
                 to={"/search?type=rent"}
               >
                 Show more places for rent
@@ -132,11 +132,11 @@ export default function Home() {
         {saleListings && saleListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2 className="text-2xl font-semibold text-slate-600">
+              <h2 className="text-2xl font-semibold text-slate-700">
                 Recent places for sale
               </h2>
               <Link
-                className="text-sm text-blue-800 hover:underline"
+                className="text-sm text-blue-400 hover:underline"
                 to={"/search?type=sale"}
               >
                 Show more places for sale

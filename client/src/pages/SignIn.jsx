@@ -70,21 +70,21 @@ const SignIn = () => {
         <input
           type="email"
           placeholder="Email"
-          className="border p-3 rounded-lg"
+          className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
           id="email"
           onChange={handleChange}
         />
         <input
           type="password"
           placeholder="Password"
-          className="border p-3 rounded-lg"
+          className="border p-3 bg-slate-50 rounded-lg border-1 border-blue-400 outline-none"
           id="password"
           onChange={handleChange}
         />
 
         <button
           disabled={loading}
-          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+          className="bg-blue-400 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Loading..." : "Sign In"}
         </button>
@@ -93,7 +93,7 @@ const SignIn = () => {
       <div className="flex gap-2 mt-5">
         <p>Don't have an account?</p>
         <Link to="/sign-up">
-          <span className="text-blue-700">Sign up</span>
+          <span className="text-blue-600 hover:underline">Sign up</span>
         </Link>
       </div>
     </div>

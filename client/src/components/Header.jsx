@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
-  const [searchTerm, setSearchTerm] = useState();
+  const [searchTerm, setSearchTerm] = useState('Modern');
   const navigate = useNavigate();
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -22,17 +22,17 @@ const Header = () => {
     }
   }, [location.search]);
   return (
-    <div className="bg-slate-200 shadow-md">
+    <div className="bg-white shadow-md">
       <div className="flex justify-between items-center max-w-6xl max-auto p-3">
         <Link to={"/"}>
-          <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-            <span className="text-slate-500">Amj</span>
-            <span className="text-slate-700">Estate</span>
+          <h1 className="font-bold text-sm sm:text-2xl md:ml-10 ml-1 flex gap-1 flex-wrap">
+            <span className="text-slate-500">Real</span>
+            <span className="text-blue-400">Estate</span>
           </h1>
         </Link>
         <form
           onSubmit={handelSubmit}
-          className="flex items-center bg-slate-100 p-3 rounded-lg "
+          className="flex items-center bg-slate-50 p-3 border-[1px] border-blue-400 rounded-lg "
         >
           <input
             type="text"
@@ -47,19 +47,19 @@ const Header = () => {
         </form>
         <ul className="flex gap-4">
           <Link to={"/"}>
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="hidden sm:inline hover:text-blue-400 text-slate-700 hover:underline">
               Home
             </li>
           </Link>
 
           <Link to={"/search"}>
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="hidden sm:inline hover:text-blue-400 text-slate-700 hover:underline">
               Listing
             </li>
           </Link>
 
           <Link to="/about">
-            <li className=" text-slate-700 hover:underline">About</li>
+            <li className=" text-slate-700 hover:text-blue-400 hover:underline">About</li>
           </Link>
           {currentUser ? (
             <Link to={"/profile"}>
@@ -71,7 +71,7 @@ const Header = () => {
             </Link>
           ) : (
             <Link to="/sign-in">
-              <li className=" text-slate-700 hover:underline"> Sign in</li>
+              <li className=" text-slate-700 hover:text-blue-400 hover:underline"> Sign in</li>
             </Link>
           )}
         </ul>

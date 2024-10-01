@@ -46,7 +46,7 @@ const OAuth = () => {
     <button
       type="button"
       onClick={handleGoogleSubmit}
-      className="w-full bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95"
+      className="w-full bg-slate-500 text-white p-3 rounded-lg uppercase hover:opacity-95"
     >
       Continue with Google
     </button>

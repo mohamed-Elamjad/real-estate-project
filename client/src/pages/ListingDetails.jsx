@@ -8,7 +8,6 @@ import {
   FaMapMarkerAlt,
   FaParking,
   FaShare,
-  FaUserCircle,
 } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -50,7 +49,7 @@ const ListingDetails = () => {
   }, [id]);
 
   useEffect(() => {
-    if (listing?.userRef) { // Add a check to see if listing and userRef exist
+    if (listing?.userRef) {
       const fetchLandlord = async () => {
         try {
           const res = await fetch(`/api/user/${listing.userRef}`);
@@ -62,7 +61,7 @@ const ListingDetails = () => {
       };
       fetchLandlord();
     }
-  }, [listing?.userRef]); // Ensure this effect runs only when listing.userRef is available
+  }, [listing?.userRef]);
   
 
   return (
@@ -114,31 +113,31 @@ const ListingDetails = () => {
             </p>
 
             {/* Location */}
-            <p className="flex items-center mt-6 gap-2 text-slate-600  text-sm">
+            <p className="flex items-center mt-6 gap-2 text-slate-700  text-sm">
               <FaMapMarkerAlt className="text-green-700" />
               {listing.address}
             </p>
 
             {/* Listing Type and Discount */}
             <div className="flex gap-4">
-              <p className="bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
+              <p className="bg-blue-400 w-full max-w-[200px] text-white text-center p-1 rounded-md">
                 {listing.type === "rent" ? "For Rent" : "For Sale"}
               </p>
               {listing.offer && (
-                <p className="bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
+                <p className="bg-green-700 w-full max-w-[200px] text-white text-center p-1 rounded-md">
                   ${+listing.regularPrice - +listing.discountPrice} discount
                 </p>
               )}
             </div>
 
             {/* Description */}
-            <p className="text-slate-800">
+            <p className="text-slate-700">
               <span className="font-semibold text-black">Description - </span>
               {listing.description}
             </p>
 
             {/* Listing Info */}
-            <ul className="text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6">
+            <ul className="text-green-700 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6">
               <li className="flex items-center gap-1 whitespace-nowrap">
                 <FaBed className="text-lg" />
                 {listing.bedrooms > 1
@@ -164,13 +163,15 @@ const ListingDetails = () => {
             {/* Contact Info */}
             <div className="mt-4 bg-slate-100 p-4 rounded-lg">
               <p className="text-lg font-semibold">Contact Information</p>
-              <p className="text-sm">Email: {listing.email}</p>
-              <p className="text-sm">Phone: {listing.phoneNumber}</p>
+              <p className="text">Email: {listing.email}</p>
+              <p className="text">Phone: {listing.phoneNumber}</p>
             </div>
 
             {/* Current User Info */}
 
-            <div className="mt-6 flex items-center gap-3">
+            {
+              currentUser && (
+                <div className="mt-6 flex items-center gap-3">
               <img
                 src={landlord?.avatar}
                 alt="User Avatar"
@@ -179,12 +180,14 @@ const ListingDetails = () => {
 
               <p className="text-slate-800">{landlord?.username}</p>
             </div>
+              )
+            }
 
             {/* Contact Button */}
             {currentUser && listing.userRef !== currentUser._id && !contact && (
               <button
                 onClick={() => setContact(true)}
-                className="bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 mt-4"
+                className="bg-blue-400 text-white rounded-lg uppercase hover:opacity-95 p-3 mt-4"
               >
                 Contact landlord
               </button>
