@@ -169,10 +169,8 @@ const Profile = () => {
           }`}
           disabled={filePerc !== 100} // Disable the button if filePerc is not 100
         >
-          <RiImageEditFill className="text-xl"/> Image
+          <RiImageEditFill className="text-xl" /> Image
         </button>
-
-
 
         {/* Username, Email, and Password Inputs */}
         <input
@@ -213,7 +211,7 @@ const Profile = () => {
         {/* Link to Create Listing */}
         <Link
           className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95"
-          to={"/create-listing"}
+          to={"/profile/create-listing"}
         >
           Create Listing
         </Link>
@@ -231,9 +229,6 @@ const Profile = () => {
           Sign out
         </span>
       </div>
-
-      {/* Show Listings Button */}
-      <button className="text-green-700 w-full">Show Listings</button>
     </div>
   );
 };
