@@ -25,7 +25,7 @@ const Header = () => {
     <div className="bg-white shadow-md">
       <div className="flex justify-between items-center max-w-6xl max-auto p-3">
         <Link to={"/"}>
-          <h1 className="font-bold text-xl sm:text-2xl md:ml-10 ml-1 flex gap-1 flex-wrap">
+          <h1 className="font-bold text-xl sm:text-2xl md:ml-10 mx-2 flex gap-1 flex-wrap">
             <span className="text-slate-500">Real</span>
             <span className="text-blue-400">Estate</span>
           </h1>
@@ -46,7 +46,7 @@ const Header = () => {
   </button>
 </form>
 
-        <ul className="flex gap-4">
+        <ul className="flex gap-3">
           <Link to={"/"}>
             <li className=" sm:inline hover:text-blue-400 text-slate-700 hover:underline">
               Home
