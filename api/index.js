@@ -13,7 +13,7 @@ app.use(express.json());
 dotenv.config();
 app.use(cookieParser());
 
-// MongoDB connection
+// MongoDB connection-
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
