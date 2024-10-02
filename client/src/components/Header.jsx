@@ -25,35 +25,36 @@ const Header = () => {
     <div className="bg-white shadow-md">
       <div className="flex justify-between items-center max-w-6xl max-auto p-3">
         <Link to={"/"}>
-          <h1 className="font-bold text-sm sm:text-2xl md:ml-10 ml-1 flex gap-1 flex-wrap">
+          <h1 className="font-bold text-xl sm:text-2xl md:ml-10 ml-1 flex gap-1 flex-wrap">
             <span className="text-slate-500">Real</span>
             <span className="text-blue-400">Estate</span>
           </h1>
         </Link>
         <form
-          onSubmit={handelSubmit}
-          className="flex items-center bg-slate-50 p-3 border-[1px] border-blue-400 rounded-lg "
-        >
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search..."
-            className="bg-transparent  focus:outline-none w-24 sm:w-64"
-          />
-          <button className="cursor-pointer">
-            <FaSearch className="text-slate-500" />
-          </button>
-        </form>
+  onSubmit={handelSubmit}
+  className="flex items-center bg-slate-50 p-3 border-[1px] border-blue-400 rounded-lg hidden md:flex"
+>
+  <input
+    type="text"
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    placeholder="Search..."
+    className="bg-transparent focus:outline-none w-24 sm:w-64"
+  />
+  <button className="cursor-pointer">
+    <FaSearch className="text-slate-500" />
+  </button>
+</form>
+
         <ul className="flex gap-4">
           <Link to={"/"}>
-            <li className="hidden sm:inline hover:text-blue-400 text-slate-700 hover:underline">
+            <li className=" sm:inline hover:text-blue-400 text-slate-700 hover:underline">
               Home
             </li>
           </Link>
 
           <Link to={"/search"}>
-            <li className="hidden sm:inline hover:text-blue-400 text-slate-700 hover:underline">
+            <li className=" sm:inline hover:text-blue-400 text-slate-700 hover:underline">
               Listing
             </li>
           </Link>
