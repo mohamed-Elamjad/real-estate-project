@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 // MongoDB connection-
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect("mongodb+srv://realEstate:realEstate@realestate.bd7yr.mongodb.net/?retryWrites=true&w=majority&appName=realEstate", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
