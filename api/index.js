@@ -13,9 +13,9 @@ app.use(express.json());
 dotenv.config();
 app.use(cookieParser());
 
-// MongoDB connection-
+// MongoDB connection
 mongoose
-  .connect("mongodb+srv://realEstate:realEstate@realestate.bd7yr.mongodb.net/?retryWrites=true&w=majority&appName=realEstate", {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
