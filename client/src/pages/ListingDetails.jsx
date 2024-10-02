@@ -21,7 +21,6 @@ const ListingDetails = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [landlord, setLandlord] = useState(null);
   const [contact, setContact] = useState(false);
   const { id } = useParams();
   const { currentUser } = useSelector((state) => state.user);
@@ -48,20 +47,7 @@ const ListingDetails = () => {
     fetchListing();
   }, [id]);
 
-  useEffect(() => {
-    if (listing?.userRef) {
-      const fetchLandlord = async () => {
-        try {
-          const res = await fetch(`/api/user/${listing.userRef}`);
-          const data = await res.json();
-          setLandlord(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchLandlord();
-    }
-  }, [listing?.userRef]);
+
   
 
   return (
@@ -167,22 +153,7 @@ const ListingDetails = () => {
               <p className="text">Phone: {listing.phoneNumber}</p>
             </div>
 
-            {/* Current User Info */}
-
-            {
-              currentUser && (
-                <div className="mt-6 flex items-center gap-3">
-              <img
-                src={landlord?.avatar}
-                alt="User Avatar"
-                className="w-10 h-10 rounded-full"
-              />
-
-              <p className="text-slate-800">{landlord?.username}</p>
-            </div>
-              )
-            }
-
+          
             {/* Contact Button */}
             {currentUser && listing.userRef !== currentUser._id && !contact && (
               <button
